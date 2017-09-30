@@ -1,11 +1,66 @@
 // made By Dheeraj Kumar Rao
 // Github:- github.com/rao123dk
 //twitter:- twitter.com/rao123dk
+// made by Rao.js library(https://github.com/rao123dk/Rao.js)
 
 "use strict"
+var key_code_value = {
+	"112" : "F1",
+	"113" : "F2",
+	"114" : "F3",
+	"115" : "F4",
+	"116" : "F5",
+	"117" : "F6",
+	"118" : "F7",
+	"119" : "F8",
+	"120" : "F9",
+	"121" : "F10",
+	"122" : "F11",
+	"123" : "F12",
+	"91" : "Windows",
+	"32" : "Space",
+	"27" : "Esc",
+	"8" : "Backspace",
+	"189" : "Dash",
+	"187" : "Equal",
+	"220" : "Back slash",
+	"13" : "Enter",
+	"222" : "single quote",
+	"186" : "Semi colon",
+	"190" : "Period/Dot",
+	"191" : "Forward slash",
+	"188" : "Comma",
+	"16" : "Shift",
+	"20" : "caps lock",
+	"9" : "Tab",
+	"192" : "grave accent",
+	"17" : "ctrl",
+	"18" : "alt",
+	"93" : "Windows menu",
+	"37" : "Left Arrow",
+	"38" : "Up Arrow",
+	"39" : "Right Arrow",
+	"40" : "Down Arrow",
+	"45" : "Insert",
+	"46" : "Delete",
+	"33" : "Page Up",
+	"34" : "Page Down",
+	"35" : "End",
+	"36" : "Home",
+	"144" : "Num lock",
+	"111" : "Divide",
+	"106" : "Multiply",
+	"109" : "Subtract",
+	"107" : "add",
+	"12" : "Clear",
+	"219" : "Open bracket ",
+	"221" : "Close bracket"
+	
 
-var displaykeycode =document.getElementById('keycode');
-var displaykeychar =document.getElementById('keychar');
+
+};
+var displaykeycode = rao('#keycode'); 
+var displaykeychar = rao('#keychar'); 
 document.addEventListener("keydown",function(e){
 	var keynum;
 	if (window.event) {
@@ -14,23 +69,24 @@ document.addEventListener("keydown",function(e){
         keynum = e.which;
     }
     var keychar = String.fromCharCode(keynum);
-    if(keynum ===32){
-    	keychar ="Space"
-    }else if(keynum ===91){
-    	keychar ="Window"
+    if(key_code_value[keynum]){
+    	keychar = key_code_value[keynum];
+    	e.preventDefault();
     }
-	displaykeycode.innerHTML= keynum;
-	displaykeychar.innerHTML= keychar;
-	
+	displaykeycode.text(keynum);
+	displaykeychar.text(keychar);
+
 	if(keynum =>65 && keynum <=90){
-		displaykeycode.style.color="red";
+		displaykeycode.attri("class"," ");
+		displaykeycode.attri("class","redcolor");
 	}else{
-		displaykeycode.style.color="green";
+		displaykeycode.attri("class"," ");
+		displaykeycode.attri("class","greencolor");
 	}
 
 
 // prevent
-	if((keynum ===83 ||keynum ===68 ||keynum ===65)&& e.ctrlKey){
+	if((keynum ===83 ||keynum ===68 ||keynum ===65 )&& e.ctrlKey){
 		e.preventDefault();
 		return false;
 	}
